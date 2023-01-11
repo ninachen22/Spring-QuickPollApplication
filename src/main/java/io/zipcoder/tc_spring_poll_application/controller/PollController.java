@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(value = "/polls")
 public class PollController {
     @Autowired
     PollRepository pollRepository;
@@ -16,7 +17,7 @@ public class PollController {
         this.pollRepository = pollRepository;
     }
 
-    @RequestMapping(value = "/polls", method = RequestMethod.GET)
+    @GetMapping("/all")
     public ResponseEntity<Iterable<Poll>> getAllPolls() {
         Iterable<Poll> allPolls = pollRepository.findAll();
         return new ResponseEntity<>(allPolls, HttpStatus.OK);
